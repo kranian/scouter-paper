@@ -1,7 +1,5 @@
 dist: xenial
 language: node_js
-addons:
-  ssh_known_hosts: $DEMO_SERVER_NODE
 #node_js:
 #  - "stable"
 #before_install:
@@ -12,7 +10,7 @@ before_install:
 #  - tar cvf $SCOUTER_PAPER_COMPRESS_NAME build/
   - echo -e "$DEMO_DEPLOY_KEY" | tr -d '\r' > $DEMO_DELOY_FILE
   - chmod 600 $DEMO_DELOY_FILE
-  - ssh-keyscan -H $DEMO_SERVER_USER >> ~/.ssh/known_hosts
+  - echo -e '$DEMO_DEPLOY_KEY' | tr -d '\r' > $HOME/.ssh/known_hosts
   - echo "scp -i $DEMO_DELOY_FILE $SCOUTER_PAPER_COMPRESS_NAME $DEMO_SERVER_USER@$DEMO_SERVER_NODE:/home/$DEMO_SERVER_USER"
   - scp -i $DEMO_DELOY_FILE README.md $DEMO_SERVER_USER@$DEMO_SERVER_NODE:/home/$DEMO_SERVER_USER
 #  - echo "ssh -i $DEMO_DELOY_FILE -T $DEMO_SERVER_USER@$DEMO_SERVER_NODE"

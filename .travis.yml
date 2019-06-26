@@ -1,3 +1,6 @@
+addons:
+  ssh_known_hosts:
+    - demo.scouterapm.com
 dist: xenial
 language: node_js
 #node_js:

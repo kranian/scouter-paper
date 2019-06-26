@@ -8,9 +8,9 @@ language: node_js
 #  - npm run-script build
 before_install:
 #  - tar cvf $SCOUTER_PAPER_COMPRESS_NAME build/
+  - echo -e "Host $DEMO_SERVER_NODE\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - echo -e "$DEMO_DEPLOY_KEY" | tr -d '\r' > $DEMO_DELOY_FILE
   - chmod 600 $DEMO_DELOY_FILE
-  - echo -e '$DEMO_DEPLOY_KEY' | tr -d '\r' > $HOME/.ssh/known_hosts
   - echo "scp -i $DEMO_DELOY_FILE $SCOUTER_PAPER_COMPRESS_NAME $DEMO_SERVER_USER@$DEMO_SERVER_NODE:/home/$DEMO_SERVER_USER"
   - scp -i $DEMO_DELOY_FILE README.md $DEMO_SERVER_USER@$DEMO_SERVER_NODE:/home/$DEMO_SERVER_USER
 #  - echo "ssh -i $DEMO_DELOY_FILE -T $DEMO_SERVER_USER@$DEMO_SERVER_NODE"

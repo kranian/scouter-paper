@@ -11,8 +11,7 @@ after_success:
   - apt-get install sshpass
   - apt-get install openssh-client
   - echo -e "$DEMO_DEPLOY_KEY" | tr -d '\r' > $DEMO_DELOY_FILE
-  - echo -e "$DEMO_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-  - cat $DEMO_DELOY_FILE
+  - chmod 600 $DEMO_DELOY_FILE
   - ssh-keyscan -H $DEMO_SERVER_NODE >> ~/.ssh/known_hosts
   - scp -i $DEMO_DELOY_FILE ./$SCOUTER_PAPER_COMPRESS_NAME $DEMO_SERVER_USER@$DEMO_SERVER_NODE:/home/$DEMO_SERVER_USER
   - ssh -i $DEMO_DELOY_FILE -T $DEMO_SERVER_USER@$DEMO_SERVER_NODE "/home/ec2-user/deploy.sh $SCOUTER_PAPER_COMPRESS_NAME"

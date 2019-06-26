@@ -8,8 +8,7 @@ script :
   - npm run-script build
 after_success:
   - tar cvf $SCOUTER_PAPER_COMPRESS_NAME build/
-  - apt-get install sshpass
-  - apt-get install openssh-client
+  - apt-get install -y sshpass openssh-server
   - echo -e "$DEMO_DEPLOY_KEY" | tr -d '\r' > $DEMO_DELOY_FILE
   - chmod 600 $DEMO_DELOY_FILE
   - cat $DEMO_DELOY_FILE
